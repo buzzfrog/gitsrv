@@ -2,17 +2,13 @@ name: e2e
 
 on:
   workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - master
 
 jobs:
   kubernetes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: engineerd/setup-kind@v0.3.0
+      - uses: helm/kind-action@v1.4.0
       - name: Build container
         run: test/build.sh
       - name: Generate SSH key
